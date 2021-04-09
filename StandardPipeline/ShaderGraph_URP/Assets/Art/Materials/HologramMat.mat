@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: HologramMat
-  m_Shader: {fileID: 4800000, guid: b8145ff118b12ca4591fbb0722d4d8ea, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: fa83712150bbbc04985f7d639fb04b92, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,6 +19,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_431C2E3D:
+        m_Texture: {fileID: 2800000, guid: 9a0e65e88aefc4e43a7450dcd81967d2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -40,8 +44,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 13cf530c48814814ba0b7603b9c80314, type: 3}
-        m_Scale: {x: 4, y: 4}
+        m_Texture: {fileID: 2800000, guid: 32f1c5a86ddcb3c4398f17684f644931, type: 3}
+        m_Scale: {x: 2, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
@@ -57,12 +61,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Amount: 0.496
-    - _Amplitude: 2.79
+    - _Amplitude: 1.86
     - _BumpScale: 1
     - _Cutoff: 0.5
-    - _CutoutThresh: 0.212
+    - _CutoutThresh: 0.147
     - _DetailNormalMapScale: 1
-    - _Distance: 0.13
+    - _Distance: -0.03
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -71,15 +75,19 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _ScrollSpeed: 0.05
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 1.27
+    - _Speed: 0.77
     - _SrcBlend: 1
-    - _Transparency: 0.234
+    - _Transparency: 0.306
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _TintColor: {r: 0.114142045, g: 0.2510439, b: 0.8962264, a: 1}
+    - _FresnelColor: {r: 1, g: 0, b: 0, a: 1}
+    - _HologramTiling: {r: 64, g: 64, b: 0, a: 0}
+    - _MainColor: {r: 3.505856, g: 0.47957474, b: 0.47957474, a: 1}
+    - _TintColor: {r: 1, g: 0, b: 0.11792451, a: 1}
   m_BuildTextureStacks: []
