@@ -8,7 +8,9 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     Rigidbody rb;
 
-    public float speed = 18.0f;
+    public float speed = 2.0f;
+    public float walkSpeed = 18.0f;
+    public float runSpeed = 18.0f;
     public float gravity = 8.0f;
     public float jumpHeight = 10.0f;
 
@@ -32,25 +34,52 @@ public class PlayerController : MonoBehaviour
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
+
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * x + transform.forward * z;
 
-        controller.Move(move * speed * Time.deltaTime);
-
+        if (move != Vector3.zero && !Input.GetKey(KeyCode.LeftShift))
+        {
+            Walk();
+        }
+        else if (move != Vector3.zero && Input.GetKey(KeyCode.LeftShift))
+        {
+            Run();
+        }
+        
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             isGrounded = false;
             velocity.y = jumpHeight;
         }
 
-        velocity.y -= gravity * Time.deltaTime;
-        animator.SetBool("IsGrounded", isGrounded);
-
-        controller.Move(velocity * Time.deltaTime);
-
+        controller.Move(move * speed * Time.deltaTime);
         animator.SetFloat("PosX", Input.GetAxis("Horizontal"));
+
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+        animator.SetBool("IsGrounded", isGrounded);
+    }
+
+    private void Walk()
+    {
+        speed = walkSpeed;
+        animator.SetFloat("PosY", Input.GetAxis("Vertical"));
+        if (animator.GetFloat("PosY") > 0.8f)
+        {
+            animator.SetFloat("PosY", 0.8f);
+        }
+    }
+
+    private void Run()
+    {
+        speed = runSpeed;
         animator.SetFloat("PosY", Input.GetAxis("Vertical"));
     }
 }

@@ -16,10 +16,10 @@ TagManager:
   - Player
   - Ground
   - 
-  - 
-  - 
-  - 
-  - 
+  - Target
+  - Enemy
+  - Ally
+  - PostProcessing
   - 
   - 
   - 
