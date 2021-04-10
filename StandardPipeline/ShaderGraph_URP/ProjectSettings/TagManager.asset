@@ -15,10 +15,10 @@ TagManager:
   - 
   - Player
   - Ground
-  - 
+  - OuterWall
   - Target
-  - Enemy
-  - Ally
+  - Pathway
+  - Interactable
   - PostProcessing
   - 
   - 

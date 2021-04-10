@@ -29,5 +29,5 @@ Material:
     - Vector1_D65B033B: 0.6
     - Vector1_E266B039: 0.02
     m_Colors:
-    - Color_63659391: {r: 0, g: 5.4283605, b: 18.136915, a: 0}
+    - Color_63659391: {r: 0.5019608, g: 0.2509804, b: 0.6901961, a: 0.25490198}
   m_BuildTextureStacks: []
