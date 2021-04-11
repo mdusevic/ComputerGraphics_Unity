@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 velocity;
     private bool isGrounded = true;
+    private bool isJumping = false;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +38,7 @@ public class PlayerController : MonoBehaviour
         if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
+            isJumping = false;
         }
 
         float x = Input.GetAxis("Horizontal");
@@ -53,10 +55,10 @@ public class PlayerController : MonoBehaviour
             Run();
         }
         
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
-            isGrounded = false;
             velocity.y = jumpHeight;
+            isJumping = true;
         }
 
         controller.Move(move * speed * Time.deltaTime);
@@ -64,7 +66,7 @@ public class PlayerController : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
-        animator.SetBool("IsGrounded", isGrounded);
+        animator.SetBool("IsJumping", isJumping);
     }
 
     private void Walk()

@@ -7,14 +7,20 @@ public class OpenPathwayButton : MonoBehaviour
     [SerializeField]
     public GameObject pathway;
 
+    [SerializeField]
+    public Material clickedMat;
+
+    private Material normalMat;
     private Material dissolveMat;
     private Transform[] path;
 
     private bool dissolvePathway;
     private float prevLerp = 1;
+    private float timeToColor = 0.1f;
 
     private void Start()
     {
+        normalMat = GetComponent<MeshRenderer>().material;
         dissolvePathway = false;
     }
 
@@ -34,6 +40,8 @@ public class OpenPathwayButton : MonoBehaviour
                 {
                     path = pathway.GetComponentsInChildren<Transform>();
 
+                    StartCoroutine("ChangeColor");
+
                     dissolvePathway = true;
                 }
             }
@@ -47,7 +55,7 @@ public class OpenPathwayButton : MonoBehaviour
                 {
                     piece.GetComponent<BoxCollider>().enabled = true;
                     dissolveMat = piece.GetComponent<MeshRenderer>().material;
-                    prevLerp = Mathf.Lerp(prevLerp, 0, 0.1f * Time.deltaTime);
+                    prevLerp = Mathf.Lerp(prevLerp, 0, 0.12f * Time.deltaTime);
                     dissolveMat.SetFloat("_Dissolve", prevLerp);
                 }
             }
@@ -57,8 +65,21 @@ public class OpenPathwayButton : MonoBehaviour
                 dissolvePathway = false;
                 path = null;
                 dissolveMat = null;
-                Destroy(this.gameObject);
+                Destroy(gameObject, 0.2f);
             }
         }
+    }
+
+    IEnumerator ChangeColor()
+    {
+        MeshRenderer mr = GetComponent<MeshRenderer>();
+        mr.material = clickedMat;
+
+        yield return new WaitForSeconds(timeToColor);
+
+        mr.material = normalMat;
+
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<SphereCollider>().enabled = false;
     }
 }

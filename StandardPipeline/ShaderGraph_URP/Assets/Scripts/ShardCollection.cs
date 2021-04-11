@@ -5,23 +5,49 @@ using UnityEngine;
 public class ShardCollection : MonoBehaviour
 {
     private int shardsCollected = 0;
+    private int maxShards = 15;
+    private bool isShardEntered = false;
 
     private void Update()
     {
-        if (shardsCollected == 15)
+        if (isShardEntered)
         {
-            Time.timeScale = 0.0f;
-            Debug.Log("GameOver");
+            AddShard();
+            isShardEntered = false;
         }
     }
 
-    private void OnTriggerEnter(Collider collision)
+    public int GetShards()
     {
-        if (collision.gameObject.tag == "Target")
+        return shardsCollected;
+    }
+
+    public int GetMaxShards()
+    {
+        return maxShards;
+    }
+
+    private void AddShard()
+    {
+        shardsCollected++;
+    }
+
+    public bool IsEndGame()
+    {
+        if (shardsCollected >= maxShards && !isShardEntered)
         {
-            shardsCollected++;
-            Debug.Log(shardsCollected);
-            Destroy(collision.gameObject, 0.2f);
+            return true;
+        }
+
+        return false;
+    }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.tag == "Shard")
+        {
+            isShardEntered = true;
+            Destroy(collider.gameObject, 0.05f);
         }
     }
 }

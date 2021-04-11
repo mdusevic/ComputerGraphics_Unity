@@ -23,7 +23,7 @@ public class ToggleVision : MonoBehaviour
         }
     }
 
-    private void Vision()
+    public void Vision()
     {
         camDefault.enabled = !camDefault.enabled;
         camVisioned.enabled = !camVisioned.enabled;
